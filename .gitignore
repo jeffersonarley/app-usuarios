@@ -1,0 +1,8 @@
+node_modules/
+.env
+api/coverage/
+web/coverage/
+web/playwright-report/
+web/test-results/
+testsprite_tests/
+.DS_Store
