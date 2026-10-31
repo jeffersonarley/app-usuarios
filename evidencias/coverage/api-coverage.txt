@@ -1,0 +1,186 @@
+
+> app-usuarios-api@1.0.0 coverage
+> vitest run --coverage
+
+
+ RUN  v3.2.7 /home/arley/Escritorio/app-usuarios (1)/api
+      Coverage enabled with v8
+
+stdout | tests/integration/usuarios.test.js > GET /api/usuarios > sin token responde 401
+[8:41:25 a. m.] GET /api/usuarios
+
+ ✓ tests/unit/generar-jwt.test.js (2 tests) 2554ms
+ ✓ tests/unit/validar-jwt.test.js (5 tests) 2202ms
+   ✓ middleware validarJWT > con token válido deja el usuario en req.usuario y llama a next()  462ms
+stdout | tests/integration/usuarios.test.js > GET /api/usuarios > con token de rol usuario responde 403
+[8:41:26 a. m.] GET /api/usuarios
+
+stdout | tests/integration/auth.test.js > POST /api/auth/registro > con datos válidos responde 201, devuelve token y rol usuario aunque se envíe admin
+[8:41:26 a. m.] POST /api/auth/registro
+
+ ✓ tests/unit/db-validators.test.js (5 tests) 2553ms
+   ✓ helper emailExiste > lanza un error cuando el email ya está registrado  457ms
+   ✓ helper emailExiste > no lanza error cuando el email pertenece al mismo usuario que se edita  326ms
+ ✓ tests/unit/validar-rol.test.js (3 tests) 2830ms
+stdout | tests/integration/usuarios.test.js > GET /api/usuarios > con token de admin responde 200 con la paginación y solo usuarios activos
+[8:41:27 a. m.] GET /api/usuarios
+
+stdout | tests/integration/usuarios.test.js > GET /api/usuarios > con limite=51 responde 400 porque el máximo es 50
+[8:41:27 a. m.] GET /api/usuarios?limite=51
+
+stdout | tests/integration/auth.test.js > POST /api/auth/registro > con un email ya registrado responde 400 con el error en el campo email
+[8:41:27 a. m.] POST /api/auth/registro
+
+stdout | tests/integration/auth.test.js > POST /api/auth/registro > con una contraseña sin mayúscula responde 400
+[8:41:27 a. m.] POST /api/auth/registro
+
+stdout | tests/integration/auth.test.js > POST /api/auth/registro > con una contraseña de menos de 8 caracteres responde 400
+[8:41:27 a. m.] POST /api/auth/registro
+
+stdout | tests/integration/auth.test.js > POST /api/auth/registro > con un email inválido y nombre corto responde 400 con ambos campos
+[8:41:27 a. m.] POST /api/auth/registro
+
+stdout | tests/integration/auth.test.js > POST /api/auth/login > con credenciales correctas responde 200, token y usuario con uid
+[8:41:27 a. m.] POST /api/auth/login
+
+ ✓ tests/unit/usuario-model.test.js (6 tests) 4419ms
+   ✓ modelo Usuario > hashea la contraseña antes de guardar  674ms
+   ✓ modelo Usuario > validarPassword compara contra el hash guardado  596ms
+   ✓ modelo Usuario > no vuelve a hashear la contraseña si no cambió  394ms
+stdout | tests/integration/auth.test.js > POST /api/auth/login > con contraseña incorrecta responde 401 con el mensaje genérico
+[8:41:28 a. m.] POST /api/auth/login
+
+stdout | tests/integration/auth.test.js > POST /api/auth/login > con un email inexistente responde 401 con el mismo mensaje genérico
+[8:41:28 a. m.] POST /api/auth/login
+
+stdout | tests/integration/auth.test.js > POST /api/auth/login > con un usuario desactivado responde 401
+[8:41:28 a. m.] POST /api/auth/login
+
+stdout | tests/integration/usuarios.test.js > GET /api/usuarios > combina la búsqueda por nombre con el filtro de rol
+[8:41:28 a. m.] GET /api/usuarios?buscar=ana&rol=usuario
+
+stdout | tests/integration/auth.test.js > GET /api/auth/perfil > sin token responde 401
+[8:41:28 a. m.] GET /api/auth/perfil
+
+stdout | tests/integration/auth.test.js > GET /api/auth/perfil > con token inválido responde 401
+[8:41:28 a. m.] GET /api/auth/perfil
+
+stdout | tests/integration/usuarios.test.js > GET /api/usuarios > con un rol inexistente en el filtro responde 400
+[8:41:28 a. m.] GET /api/usuarios?rol=superadmin
+
+stdout | tests/integration/auth.test.js > GET /api/auth/perfil > con token válido responde 200 con el usuario autenticado
+[8:41:28 a. m.] GET /api/auth/perfil
+
+stdout | tests/integration/usuarios.test.js > GET /api/usuarios/:id > con un id mal formado responde 400
+[8:41:29 a. m.] GET /api/usuarios/abc
+
+stdout | tests/integration/auth.test.js > GET /api/auth/perfil > permite actualizar nombre y email del propio perfil
+[8:41:29 a. m.] PUT /api/auth/perfil
+
+stdout | tests/integration/usuarios.test.js > GET /api/usuarios/:id > con un id válido que no existe responde 404
+[8:41:29 a. m.] GET /api/usuarios/6ae5f009c81c30268de34104
+
+stdout | tests/integration/auth.test.js > PUT /api/auth/password > con la contraseña actual incorrecta responde 400
+[8:41:29 a. m.] PUT /api/auth/password
+
+stdout | tests/integration/usuarios.test.js > GET /api/usuarios/:id > con un id de un usuario activo responde 200
+[8:41:29 a. m.] GET /api/usuarios/6ae5f009c81c30268de3410a
+
+stdout | tests/integration/auth.test.js > PUT /api/auth/password > con la nueva contraseña igual a la actual responde 400
+[8:41:29 a. m.] PUT /api/auth/password
+
+stdout | tests/integration/usuarios.test.js > POST /api/usuarios > el admin crea un usuario y la contraseña queda hasheada en la base de datos
+[8:41:29 a. m.] POST /api/usuarios
+
+stdout | tests/integration/auth.test.js > PUT /api/auth/password > con el cambio correcto responde 200 y luego el login funciona con la nueva
+[8:41:30 a. m.] PUT /api/auth/password
+
+stdout | tests/integration/auth.test.js > PUT /api/auth/password > con el cambio correcto responde 200 y luego el login funciona con la nueva
+[8:41:30 a. m.] POST /api/auth/login
+
+stdout | tests/integration/usuarios.test.js > POST /api/usuarios > con un email ya registrado responde 400
+[8:41:30 a. m.] POST /api/usuarios
+
+stdout | tests/integration/usuarios.test.js > POST /api/usuarios > con un rol inválido responde 400
+[8:41:30 a. m.] POST /api/usuarios
+
+ ✓ tests/integration/auth.test.js (16 tests) 6635ms
+   ✓ POST /api/auth/registro > con datos válidos responde 201, devuelve token y rol usuario aunque se envíe admin  896ms
+   ✓ POST /api/auth/registro > con un email ya registrado responde 400 con el error en el campo email  397ms
+   ✓ POST /api/auth/login > con credenciales correctas responde 200, token y usuario con uid  418ms
+   ✓ POST /api/auth/login > con contraseña incorrecta responde 401 con el mensaje genérico  404ms
+   ✓ POST /api/auth/login > con un usuario desactivado responde 401  395ms
+   ✓ PUT /api/auth/password > con la contraseña actual incorrecta responde 400  394ms
+   ✓ PUT /api/auth/password > con la nueva contraseña igual a la actual responde 400  449ms
+   ✓ PUT /api/auth/password > con el cambio correcto responde 200 y luego el login funciona con la nueva  626ms
+stdout | tests/integration/usuarios.test.js > PUT /api/usuarios/:id > el admin no puede cambiar su propio rol
+[8:41:30 a. m.] PUT /api/usuarios/6ae5f00ac81c30268de34123
+
+stdout | tests/integration/usuarios.test.js > PUT /api/usuarios/:id > con la contraseña vacía no la cambia y el login sigue funcionando
+[8:41:31 a. m.] PUT /api/usuarios/6ae5f00ac81c30268de3412a
+
+stdout | tests/integration/usuarios.test.js > PUT /api/usuarios/:id > con la contraseña vacía no la cambia y el login sigue funcionando
+[8:41:31 a. m.] POST /api/auth/login
+
+stdout | tests/integration/usuarios.test.js > PUT /api/usuarios/:id > con un id que no existe responde 404
+[8:41:31 a. m.] PUT /api/usuarios/6ae5f00bc81c30268de34134
+
+stdout | tests/integration/usuarios.test.js > DELETE /api/usuarios/:id > el admin no puede eliminarse a sí mismo
+[8:41:31 a. m.] DELETE /api/usuarios/6ae5f00bc81c30268de34138
+
+stdout | tests/integration/usuarios.test.js > DELETE /api/usuarios/:id > hace borrado lógico: deja de listarse y el usuario ya no puede iniciar sesión
+[8:41:31 a. m.] DELETE /api/usuarios/6ae5f00bc81c30268de3413f
+
+stdout | tests/integration/usuarios.test.js > DELETE /api/usuarios/:id > hace borrado lógico: deja de listarse y el usuario ya no puede iniciar sesión
+[8:41:31 a. m.] GET /api/usuarios?buscar=borrado@test.com
+
+stdout | tests/integration/usuarios.test.js > DELETE /api/usuarios/:id > hace borrado lógico: deja de listarse y el usuario ya no puede iniciar sesión
+[8:41:31 a. m.] POST /api/auth/login
+
+stdout | tests/integration/usuarios.test.js > otros casos de la API > GET /api/health responde 200 con { status: 'ok' }
+[8:41:31 a. m.] GET /api/health
+
+stdout | tests/integration/usuarios.test.js > otros casos de la API > una ruta inexistente responde 404 en JSON
+[8:41:31 a. m.] GET /api/no-existe
+
+stdout | tests/integration/usuarios.test.js > otros casos de la API > un body con JSON mal formado responde 400 con el mensaje esperado
+[8:41:31 a. m.] POST /api/auth/login
+
+ ✓ tests/integration/usuarios.test.js (20 tests) 7627ms
+   ✓ GET /api/usuarios > con token de rol usuario responde 403  352ms
+   ✓ GET /api/usuarios > con token de admin responde 200 con la paginación y solo usuarios activos  874ms
+   ✓ GET /api/usuarios > combina la búsqueda por nombre con el filtro de rol  1263ms
+   ✓ GET /api/usuarios/:id > con un id de un usuario activo responde 200  440ms
+   ✓ POST /api/usuarios > el admin crea un usuario y la contraseña queda hasheada en la base de datos  599ms
+   ✓ PUT /api/usuarios/:id > con la contraseña vacía no la cambia y el login sigue funcionando  349ms
+   ✓ DELETE /api/usuarios/:id > hace borrado lógico: deja de listarse y el usuario ya no puede iniciar sesión  351ms
+
+ Test Files  7 passed (7)
+      Tests  57 passed (57)
+   Start at  08:41:20
+   Duration  11.16s (transform 400ms, setup 8.24s, collect 2.50s, tests 28.82s, environment 22ms, prepare 3.14s)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   93.42 |    84.61 |     100 |   93.42 |                   
+ api               |   79.16 |       80 |     100 |   79.16 |                   
+  app.js           |   79.16 |       80 |     100 |   79.16 | 44-54             
+ api/controllers   |   88.09 |    73.91 |     100 |   88.09 |                   
+  auth.js          |   88.05 |    77.77 |     100 |   88.05 | ...39,59-60,82-83 
+  usuarios.js      |   88.11 |    71.42 |     100 |   88.11 | ...12-113,124-125 
+ api/helpers       |     100 |     92.3 |     100 |     100 |                   
+  db-validators.js |     100 |      100 |     100 |     100 |                   
+  generar-jwt.js   |     100 |       50 |     100 |     100 | 6                 
+  ...as-usuario.js |     100 |      100 |     100 |     100 |                   
+ api/middlewares   |     100 |      100 |     100 |     100 |                   
+  ...dar-campos.js |     100 |      100 |     100 |     100 |                   
+  validar-jwt.js   |     100 |      100 |     100 |     100 |                   
+  validar-rol.js   |     100 |      100 |     100 |     100 |                   
+ api/models        |     100 |      100 |     100 |     100 |                   
+  usuario.js       |     100 |      100 |     100 |     100 |                   
+ api/routes        |     100 |      100 |     100 |     100 |                   
+  auth.js          |     100 |      100 |     100 |     100 |                   
+  usuarios.js      |     100 |      100 |     100 |     100 |                   
+-------------------|---------|----------|---------|---------|-------------------

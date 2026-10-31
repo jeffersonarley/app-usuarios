@@ -1,0 +1,47 @@
+
+> app-usuarios-web@1.0.0 coverage
+> vitest run --coverage
+
+
+ RUN  v5.0.5 /home/arley/Escritorio/app-usuarios (1)/web
+      Coverage enabled with v8
+
+
+ Test Files  19 passed (19)
+      Tests  89 passed (89)
+   Start at  08:41:20
+   Duration  9.72s (environment 77%, import 11%, tests 8%, worker 3%, setup 1%, transform 1%)
+
+Environment  jsdom was created 19 times · 41.86s total, 77% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+[34m % [39m[2mCoverage report from [22m[33mv8[39m
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |    93.8 |    87.39 |   89.36 |   94.71 |                   
+ src/components    |    94.2 |    86.15 |   88.88 |   95.08 |                   
+  AppHeader.vue    |   94.73 |      100 |    87.5 |   94.44 | 39                
+  ...irmDialog.vue |   81.25 |     64.7 |   71.42 |   86.66 | 27,34             
+  FormField.vue    |     100 |    88.46 |     100 |     100 | 43,50,57          
+ src/composables   |     100 |    83.33 |     100 |     100 |                   
+  useToast.js      |     100 |    66.66 |     100 |     100 | 10,16             
+ src/router        |   86.95 |    83.33 |      70 |   86.95 |                   
+  index.js         |   86.95 |    83.33 |      70 |   86.95 | 20,32-38          
+ src/services      |   98.03 |    96.55 |   90.47 |     100 |                   
+  http.js          |   97.29 |    96.42 |      80 |     100 | 39                
+ src/views         |   91.66 |    85.43 |   88.33 |    93.1 |                   
+  LoginView.vue    |     100 |     82.6 |     100 |     100 | 20,33-34          
+  ProfileView.vue  |   93.33 |     77.5 |     100 |   96.22 | 42-43             
+  RegisterView.vue |   96.87 |       95 |     100 |   96.55 | 45                
+  UserFormView.vue |    90.9 |    89.47 |   92.85 |   92.72 | 43,80-81,119      
+  UsersView.vue    |   85.13 |    82.75 |   73.91 |   86.36 | ...-81,96,123,219 
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 93.8% ( 454/484 )
+Branches     : 87.39% ( 312/357 )
+Functions    : 89.36% ( 126/141 )
+Lines        : 94.71% ( 394/416 )
+================================================================================

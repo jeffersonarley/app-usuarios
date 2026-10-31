@@ -1,0 +1,17 @@
+
+> app-usuarios-web@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /home/arley/Escritorio/app-usuarios (1)/web
+
+
+ Test Files  19 passed (19)
+      Tests  89 passed (89)
+   Start at  08:41:12
+   Duration  7.11s (environment 79%, import 11%, tests 7%, transform 1%, setup 1%, worker 1%)
+
+Environment  jsdom was created 19 times · 31.28s total, 79% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
